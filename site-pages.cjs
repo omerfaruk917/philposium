@@ -86,8 +86,10 @@ function render(page, lang) {
   function form(kind) {
     const contact = kind === 'contact';
     const configured = process.env[contact ? 'PHILPOSIUM_CONTACT_ENDPOINT' : 'PHILPOSIUM_NEWSLETTER_ENDPOINT'];
-    const endpoint = configured || (process.env.PHILPOSIUM_LOCAL_FORMS === '1' ? '/api/' + kind : '');
+    const useBuiltInForms = process.env.PHILPOSIUM_LOCAL_FORMS === '1' || process.env.WORKERS_CI === '1';
+    const endpoint = configured || (useBuiltInForms ? '/api/' + kind : '');
     return `<form class="phil-form" data-phil-form="${kind}" method="post"${endpoint ? ` data-endpoint="${escape(endpoint)}"` : ''}>
+      ${contact ? `<p class="form-notice">${T('Aklınıza takılan her şeyi sorabilirsiniz, özgür olun', 'Feel free to ask us anything.')}</p>` : ''}
       ${contact ? `<label>${T('Adınız','Name')}<input name="name" autocomplete="name" maxlength="120" required></label>` : ''}
       <label>${T('E-posta adresiniz','Email address')}<input type="email" name="email" autocomplete="email" maxlength="254" required></label>
       ${contact ? `<label>${T('Mesajınız','Message')}<textarea name="message" rows="5" maxlength="3000" required></textarea></label>` : ''}

@@ -7,11 +7,8 @@
   const language = document.documentElement.lang.toLowerCase().startsWith('en') ? 'en' : 'tr';
   const copy = {
     tr: {
-      preview: 'Yerel önizleme. Bu form yalnızca deneme amaçlıdır.',
-      demoContact: 'Deneme tamamlandı. Mesaj gönderilmedi.',
-      demoNewsletter: 'Deneme tamamlandı. E-posta listesine kayıt yapılmadı.',
       sending: 'Gönderiliyor…',
-      contact: 'Mesajınız gönderildi.',
+      contact: 'Mesajınız kaydedildi.',
       localContact: 'Mesajınız yerel gelen kutusuna kaydedildi.',
       localNewsletter: 'Adresiniz yerel e-posta listesine kaydedildi.',
       newsletter: 'E-posta listesine kaydoldunuz.',
@@ -19,11 +16,8 @@
       failed: 'Gönderim doğrulanamadı. Bilgileriniz formda duruyor.',
     },
     en: {
-      preview: 'Local preview. This form is available for testing only.',
-      demoContact: 'Test complete. Your message was not sent.',
-      demoNewsletter: 'Test complete. Your address was not added to the mailing list.',
       sending: 'Submitting…',
-      contact: 'Your message was sent.',
+      contact: 'Your message was saved.',
       localContact: 'Your message was saved to the local inbox.',
       localNewsletter: 'Your address was saved to the local mailing list.',
       newsletter: 'You joined the mailing list.',
@@ -110,9 +104,10 @@
   // Configure a public HTTPS endpoint accepting a CORS-enabled multipart POST.
   function getEndpoint(form) {
     const value = (form.getAttribute('data-endpoint') ?? form.getAttribute('action') ?? '').trim();
-    if (!value) return null;
+    if (!value) return false;
     if (value === '/api/' + form.dataset.philForm) {
-      return location.protocol === 'http:' && location.hostname === '127.0.0.1' ? new URL(value, location.origin) : null;
+      const loopback = location.protocol === 'http:' && location.hostname === '127.0.0.1';
+      return location.protocol === 'https:' || loopback ? new URL(value, location.origin) : false;
     }
     try {
       const url = new URL(value);
@@ -132,13 +127,8 @@
     button.disabled = false;
     const endpoint = getEndpoint(form);
     const local = endpoint?.protocol === 'http:';
+    const builtIn = endpoint && form.getAttribute('data-endpoint') === '/api/' + form.dataset.philForm;
     const icon = decorate(button);
-    if (!endpoint) {
-      const notice = document.createElement('p');
-      notice.className = 'form-notice';
-      notice.textContent = endpoint === null ? copy.preview : copy.invalidEndpoint;
-      form.prepend(notice);
-    }
 
     function report(text, state) {
       status.textContent = text;
@@ -158,12 +148,6 @@
         report(copy.invalidEndpoint, 'error');
         return;
       }
-      if (endpoint === null) {
-        report(isNewsletter ? copy.demoNewsletter : copy.demoContact, 'success');
-        celebrate(icon);
-        return;
-      }
-
       const fields = new FormData(form);
       const controller = new AbortController();
       const timer = setTimeout(() => controller.abort(), 15000);
@@ -175,15 +159,16 @@
         const response = await fetch(endpoint, {
           method: 'POST',
           headers: { Accept: 'application/json' },
-          body: local ? new URLSearchParams(fields) : fields,
+          body: builtIn ? new URLSearchParams(fields) : fields,
           credentials: 'omit',
           redirect: 'error',
           signal: controller.signal,
         });
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        if (response.headers.get('content-type')?.includes('application/json')) {
+        if (builtIn || response.headers.get('content-type')?.includes('application/json')) {
           const result = await response.json();
-          if (result?.ok === false || result?.success === false) throw new Error('Rejected');
+          const rejected = builtIn ? result?.ok !== true : result?.ok === false || result?.success === false;
+          if (rejected) throw new Error('Rejected');
         }
       } catch {
         report(copy.failed, 'error');
