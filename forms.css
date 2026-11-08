@@ -1,0 +1,108 @@
+.phil-form {
+  display: grid;
+  gap: 14px;
+  align-items: start;
+  max-inline-size: 40rem;
+}
+
+.phil-form label {
+  display: grid;
+  gap: 7px;
+  font-weight: 500;
+}
+
+.phil-form :is(input:not([type="checkbox"]):not([type="radio"]), textarea, select) {
+  width: 100%;
+  min-width: 0;
+  min-height: 47px;
+  padding: 11px 14px;
+  border: 1px solid var(--hairline, #20202033);
+  border-radius: 5px;
+  color: var(--ink, #202020);
+  background: #fff9;
+  font: inherit;
+  font-weight: 400;
+}
+
+.phil-form textarea {
+  min-height: 9rem;
+  resize: vertical;
+}
+
+.phil-form :is(.form-notice, .form-status) {
+  margin: 0;
+  color: var(--muted, #5e5346);
+  font-size: .88rem;
+}
+
+.phil-form .form-status:empty { margin-block-start: -14px; }
+.phil-form .form-status[data-state="error"] { color: #8b3129; }
+.phil-form .form-status[data-state="success"] { color: #365229; }
+
+/* Cannon recoil and burst inspired by Aaron Iker’s MIT-licensed Confirm confetti button. */
+.confetti-button {
+  position: relative;
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 46px;
+  padding: 10px 18px 10px 14px;
+  border: 1px solid var(--ink, #202020);
+  border-radius: 99px;
+  color: var(--ink, #202020);
+  background: var(--yellow, #fede5c);
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transform: perspective(380px) rotateX(var(--confetti-rx, 0deg)) rotateY(var(--confetti-ry, 0deg));
+  transition: transform .22s ease-out, box-shadow .22s ease-out;
+}
+
+.confetti-button:hover { box-shadow: 0 3px 0 var(--ink, #202020); }
+.confetti-button:active { transform: translateY(2px); box-shadow: none; }
+.confetti-button[aria-disabled="true"] { cursor: progress; opacity: .75; }
+
+.confetti-button__icon {
+  display: grid;
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  position: relative;
+}
+
+.confetti-button__icon svg {
+  width: 100%;
+  height: 100%;
+  stroke: currentColor;
+  stroke-width: 1.55;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.confetti-button__check { opacity: 0; }
+.confetti-button[data-state="success"] .confetti-button__icon:not(.is-bursting) :is(.confetti-button__cone, .confetti-button__sparks) { opacity: 0; }
+.confetti-button[data-state="success"] .confetti-button__icon:not(.is-bursting) .confetti-button__check { opacity: 1; }
+
+.confetti-button__burst {
+  position: absolute;
+  top: 11px;
+  left: 12px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.confetti-button__burst i {
+  position: absolute;
+  display: block;
+  width: 4px;
+  height: 6px;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .confetti-button { transform: none; transition: none; }
+  .confetti-button__burst { display: none; }
+}

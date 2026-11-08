@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#efe9d3">
+  <meta name="description" content="Philposium is an undergraduate philosophy symposium run by philosophy students at Marmara University.">
+  <title>Philposium · Philosophy Symposium</title>
+  <link rel="icon" href="../design/phil-logo-kiwi.svg" type="image/svg+xml">
+  <link rel="alternate" hreflang="tr" href="../index.html">
+  <link rel="stylesheet" href="../site.css">
+  <link rel="stylesheet" href="../forms.css">
+  <script src="../design/kiwi-loader/lottie-light.min.js" defer></script>
+  <script src="../design/kiwi-loader/kiwi-loader.js" defer></script>
+  <script src="../site.js" defer></script>
+  <script src="../pointer-fluid.js" defer></script>
+  <script src="../assets/vendor/hammer.min.js" defer></script>
+  <script src="../orbital.js" defer></script>
+  <script src="../forms.js" defer></script>
+</head>
+<body id="top" class="home-page">
+  <canvas class="pointer-fluid" aria-hidden="true"></canvas>
+  <svg class="symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><symbol id="i-home" viewBox="0 0 24 24"><path d="m3.5 10 6.8-5.8a2.6 2.6 0 0 1 3.4 0l6.8 5.8M6 8.5v10A2.5 2.5 0 0 0 8.5 21h7a2.5 2.5 0 0 0 2.5-2.5v-10M10 21v-4a2 2 0 0 1 4 0v4"/></symbol><symbol id="i-about" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><ellipse cx="12" cy="12" rx="10.7" ry="4.2" transform="rotate(-34 12 12)"/></symbol><symbol id="i-gallery" viewBox="0 0 24 24"><rect x="5.5" y="3.5" width="13" height="17" rx="3" transform="rotate(12 12 12)"/><path d="M5 5.5H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2m4-3 3.5-3.5 4 4.5m-2.3-7.4h.01"/></symbol><symbol id="i-blog" viewBox="0 0 24 24"><path d="M5 4h10a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3V5a1 1 0 0 1 1-1Zm-1 13a3 3 0 0 1 3-3h11M8 8h6m-6 3h4"/></symbol><symbol id="i-contact" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="3"/><path d="m4.5 7 6 5a2.4 2.4 0 0 0 3 0l6-5"/></symbol><symbol id="i-right" viewBox="0 0 24 24"><path d="M4.5 12h14m-5.5-5.5 5.5 5.5-5.5 5.5"/></symbol><symbol id="i-diag" viewBox="0 0 24 24"><path d="M6 18 18 6M7.5 6H18v10.5"/></symbol><symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5m-6 6 6-6 6 6"/></symbol><symbol id="i-left" viewBox="0 0 24 24"><path d="M19.5 12h-14M11 6.5 5.5 12l5.5 5.5"/></symbol><symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol></svg>
+  <a href="#ana" class="skip">Skip to content</a>
+  <div class="loader" hidden>
+    <div class="loader__bird"><img src="../design/phil-logo-kiwi.svg" width="163" height="126" alt=""></div>
+    <div class="loader__rule" aria-hidden="true"></div>
+    <div class="loader__fact"><strong>Did you know?</strong><p></p></div>
+    <button class="loader__skip" type="button">Skip</button>
+  </div>
+  <nav class="dock" aria-label="Sections" style="--active:0">
+    <div class="dock__drop" aria-hidden="true"></div>
+    <a href="../en/index.html" aria-label="Home" aria-current="page"><svg aria-hidden="true"><use href="#i-home"/></svg><span>Home</span></a><a href="../en/about.html" aria-label="About Us"><svg aria-hidden="true"><use href="#i-about"/></svg><span>About Us</span></a><a href="../en/gallery.html" aria-label="Philposium Gallery"><svg aria-hidden="true"><use href="#i-gallery"/></svg><span>Gallery</span></a><a href="../en/blog.html" aria-label="Selections"><svg aria-hidden="true"><use href="#i-blog"/></svg><span>Selections</span></a><a href="../en/contact.html" aria-label="Contact"><svg aria-hidden="true"><use href="#i-contact"/></svg><span>Contact</span></a>
+  </nav>
+  <main id="ana" tabindex="-1"><section class="opening" aria-label="Philposium"><div class="opening__pin"><div class="opening__track">
+      <div class="spread cover"><header class="masthead layout"><a class="wordmark" href="../en/index.html" aria-label="Philposium · Home"><img src="../design/phil-logo-text.svg" width="415" height="93" alt="Philposium"></a>
+    <nav class="masthead__nav" aria-label="Main menu"><a href="../en/about.html">About Us</a><a href="../en/gallery.html">Philposium Gallery</a><a href="../en/blog.html">Selections</a><a href="../en/contact.html">Contact</a></nav>
+    <div class="masthead__actions"><a class="call-link" href="../en/2027-call-for-papers.html">2027 Call for Papers<svg aria-hidden="true"><use href="#i-diag"/></svg></a><a class="language-link" href="../index.html" hreflang="tr" lang="tr" aria-label="Türkçe">TR</a></div>
+  </header>
+        <div class="cover__body"><div class="cover__type">
+          <h1>Philosophy<br> <em>symposium</em></h1><div class="cover__rule"></div>
+          <a class="round-link" href="#hakkinda"><span class="round-link__arrow"><svg aria-hidden="true"><use href="#i-right"/></svg></span><span>About Us</span></a>
+        </div>
+        <figure class="cover__art">
+          <svg class="cover__illustration" viewBox="0 0 960 1440" width="960" height="1440" role="img" aria-label="Stairs, columns, books and birds made from blocks">
+            <defs><filter id="cover-bend" x="-5%" y="-5%" width="110%" height="110%">
+              <feTurbulence type="fractalNoise" baseFrequency=".0015 .001" numOctaves="1" seed="6" result="warp"/>
+              <feDisplacementMap in="SourceGraphic" in2="warp" scale="0" xChannelSelector="R" yChannelSelector="G"/>
+            </filter></defs>
+            <image href="../assets/art/philposium-cover.webp" width="960" height="1440"/>
+          </svg>
+        </figure></div>
+      </div>
+      <section class="spread interlude" id="hakkinda" aria-labelledby="interlude-title"><div class="interlude__body about-surface layout"><div class="interlude__type">
+        <h2 id="interlude-title">About Us</h2><p>Philposium is an undergraduate philosophy symposium run by philosophy students at Marmara University.</p><a class="round-link" href="../en/about.html"><span class="round-link__arrow"><svg aria-hidden="true"><use href="#i-right"/></svg></span><span>About Philposium</span></a>
+        </div></div></section>
+      </div></div></section>
+      <section id="medya" class="gallery layout" aria-labelledby="gallery-title"><header class="section-head section-head--link"><h2 id="gallery-title">Philposium Gallery</h2><a class="round-link" href="../en/gallery.html"><span class="round-link__arrow"><svg aria-hidden="true"><use href="#i-right"/></svg></span><span>Open gallery</span></a></header><div class="orbit"><div class="orbit__viewport" aria-label="Visual gallery"><div class="orbit__stage"><div class="sphere">
+    <div class="item"><a class="item__image" href="../assets/gallery/met-251787.webp" data-picture="0" data-artist="" data-source="https://www.metmuseum.org/art/collection/search/251787"><img src="../assets/gallery/met-251787-thumb.webp" alt="Marble Portrait Head of the Philosopher Chrysippos" loading="lazy" draggable="false"></a></div>
+<div class="item"><a class="item__image" href="../assets/gallery/met-436535.webp" data-picture="1" data-artist="Vincent van Gogh" data-source="https://www.metmuseum.org/art/collection/search/436535"><img src="../assets/gallery/met-436535-thumb.webp" alt="Wheat Field with Cypresses" loading="lazy" draggable="false"></a></div>
+<div class="item"><a class="item__image" href="../assets/gallery/met-337725.webp" data-picture="2" data-artist="Giovanni Battista Piranesi" data-source="https://www.metmuseum.org/art/collection/search/337725"><img src="../assets/gallery/met-337725-thumb.webp" alt="The Round Tower" loading="lazy" draggable="false"></a></div>
+<div class="item"><a class="item__image" href="../assets/gallery/met-45434.webp" data-picture="3" data-artist="Katsushika Hokusai" data-source="https://www.metmuseum.org/art/collection/search/45434"><img src="../assets/gallery/met-45434-thumb.webp" alt="Under the Wave off Kanagawa" loading="lazy" draggable="false"></a></div>
+<div class="item"><a class="item__image" href="../assets/gallery/met-247265.webp" data-picture="4" data-artist="" data-source="https://www.metmuseum.org/art/collection/search/247265"><img src="../assets/gallery/met-247265-thumb.webp" alt="Attic Terracotta Amphora" loading="lazy" draggable="false"></a></div>
+<div class="item"><a class="item__image" href="../assets/gallery/met-436121.webp" data-picture="5" data-artist="Edgar Degas" data-source="https://www.metmuseum.org/art/collection/search/436121"><img src="../assets/gallery/met-436121-thumb.webp" alt="A Woman Seated beside a Vase of Flowers" loading="lazy" draggable="false"></a></div>
+<div class="item"><a class="item__image" href="../assets/gallery/met-336228.webp" data-picture="6" data-artist="Albrecht Dürer" data-source="https://www.metmuseum.org/art/collection/search/336228"><img src="../assets/gallery/met-336228-thumb.webp" alt="Melencolia I" loading="lazy" draggable="false"></a></div>
+<div class="item"><a class="item__image" href="../assets/gallery/met-251460.webp" data-picture="7" data-artist="" data-source="https://www.metmuseum.org/art/collection/search/251460"><img src="../assets/gallery/met-251460-thumb.webp" alt="Marble Statuette of a Seated Philosopher" loading="lazy" draggable="false"></a></div>
+<div class="item"><a class="item__image" href="../assets/gallery/met-813076.webp" data-picture="8" data-artist="Francesco Curti" data-source="https://www.metmuseum.org/art/collection/search/813076"><img src="../assets/gallery/met-813076-thumb.webp" alt="Frontispiece from The New Almagest" loading="lazy" draggable="false"></a></div>
+<div class="item"><a class="item__image" href="../assets/gallery/met-436524.webp" data-picture="9" data-artist="Vincent van Gogh" data-source="https://www.metmuseum.org/art/collection/search/436524"><img src="../assets/gallery/met-436524-thumb.webp" alt="Sunflowers" loading="lazy" draggable="false"></a></div>
+<div class="item"><a class="item__image" href="../assets/gallery/met-253592.webp" data-picture="10" data-artist="" data-source="https://www.metmuseum.org/art/collection/search/253592"><img src="../assets/gallery/met-253592-thumb.webp" alt="Marble Portrait of the Emperor Caracalla" loading="lazy" draggable="false"></a></div>
+<div class="item"><a class="item__image" href="../assets/gallery/met-436105.webp" data-picture="11" data-artist="Jacques Louis David" data-source="https://www.metmuseum.org/art/collection/search/436105"><img src="../assets/gallery/met-436105-thumb.webp" alt="The Death of Socrates" loading="lazy" draggable="false"></a></div>
+<div class="item"><a class="item__image" href="../assets/gallery/met-362671.webp" data-picture="12" data-artist="Giovanni Battista Piranesi" data-source="https://www.metmuseum.org/art/collection/search/362671"><img src="../assets/gallery/met-362671-thumb.webp" alt="Prisoners on a Projecting Platform" loading="lazy" draggable="false"></a></div>
+<div class="item"><a class="item__image" href="../assets/gallery/met-437394.webp" data-picture="13" data-artist="Rembrandt" data-source="https://www.metmuseum.org/art/collection/search/437394"><img src="../assets/gallery/met-437394-thumb.webp" alt="Aristotle with a Bust of Homer" loading="lazy" draggable="false"></a></div>
+<div class="item"><a class="item__image" href="../assets/gallery/met-356589.webp" data-picture="14" data-artist="Johannes de Sacrobosco" data-source="https://www.metmuseum.org/art/collection/search/356589"><img src="../assets/gallery/met-356589-thumb.webp" alt="Sphaera Mundi" loading="lazy" draggable="false"></a></div>
+<div class="item"><a class="item__image" href="../assets/gallery/met-435906.webp" data-picture="15" data-artist="Claude Lorrain" data-source="https://www.metmuseum.org/art/collection/search/435906"><img src="../assets/gallery/met-435906-thumb.webp" alt="Pastoral Landscape: The Roman Campagna" loading="lazy" draggable="false"></a></div>
+<div class="item"><a class="item__image" href="../assets/gallery/met-369807.webp" data-picture="16" data-artist="Rembrandt" data-source="https://www.metmuseum.org/art/collection/search/369807"><img src="../assets/gallery/met-369807-thumb.webp" alt="Self-Portrait Etching at a Window" loading="lazy" draggable="false"></a></div>
+<div class="item"><a class="item__image" href="../assets/gallery/met-251475.webp" data-picture="17" data-artist="" data-source="https://www.metmuseum.org/art/collection/search/251475"><img src="../assets/gallery/met-251475-thumb.webp" alt="Marble Torso of Eros" loading="lazy" draggable="false"></a></div>
+<div class="item"><a class="item__image" href="../assets/gallery/met-338473.webp" data-picture="18" data-artist="Francisco de Goya" data-source="https://www.metmuseum.org/art/collection/search/338473"><img src="../assets/gallery/met-338473-thumb.webp" alt="The Sleep of Reason Produces Monsters" loading="lazy" draggable="false"></a></div>
+<div class="item"><a class="item__image" href="../assets/gallery/met-436532.webp" data-picture="19" data-artist="Vincent van Gogh" data-source="https://www.metmuseum.org/art/collection/search/436532"><img src="../assets/gallery/met-436532-thumb.webp" alt="Self-Portrait with a Straw Hat" loading="lazy" draggable="false"></a></div>
+<div class="item"><a class="item__image" href="../assets/gallery/met-256609.webp" data-picture="20" data-artist="" data-source="https://www.metmuseum.org/art/collection/search/256609"><img src="../assets/gallery/met-256609-thumb.webp" alt="Black-Figure Neck-Amphora" loading="lazy" draggable="false"></a></div>
+<div class="item"><a class="item__image" href="../assets/gallery/met-436283.webp" data-picture="21" data-artist="" data-source="https://www.metmuseum.org/art/collection/search/436283"><img src="../assets/gallery/met-436283-thumb.webp" alt="Virgin and Child in a Niche" loading="lazy" draggable="false"></a></div>
+<div class="item"><a class="item__image" href="../assets/gallery/met-251493.webp" data-picture="22" data-artist="" data-source="https://www.metmuseum.org/art/collection/search/251493"><img src="../assets/gallery/met-251493-thumb.webp" alt="Marble Head of a Greek General" loading="lazy" draggable="false"></a></div>
+    </div></div></div><div class="orbit__controls" hidden>
+    <button class="circle-button" type="button" data-orbit-step="1" aria-label="Rotate gallery left"><svg aria-hidden="true"><use href="#i-left"/></svg></button>
+    <button class="circle-button" type="button" data-orbit-step="-1" aria-label="Rotate gallery right"><svg aria-hidden="true"><use href="#i-right"/></svg></button></div></div></section>
+      <section id="arsiv" class="home-blog layout"><header class="section-head section-head--link"><h2>Selections</h2><a class="round-link" href="../en/blog.html"><span class="round-link__arrow"><svg aria-hidden="true"><use href="#i-right"/></svg></span><span>All articles</span></a></header><ol class="selection-list" role="list"><li class="selection-card"><a href="https://www.ufukfelsefedergisi.com/blog/nour-hasanato" hreflang="tr">
+      <span class="selection-card__title" lang="tr">Filozofların Eli… Dokunsal Bir Felsefeye Giriş</span>
+      <span class="selection-card__credit">Fethi el-Miskînî<br>Translation: Nour Hasanato</span>
+      <span class="selection-card__read">Read on Ufuk <svg aria-hidden="true"><use href="#i-diag"/></svg></span>
+    </a></li><li class="selection-card"><a href="https://www.ufukfelsefedergisi.com/blog/grnmezlik-perdesi" hreflang="tr">
+      <span class="selection-card__title" lang="tr">Görünmezlik Perdesi</span>
+      <span class="selection-card__credit">Azra H. Bostancı</span>
+      <span class="selection-card__read">Read on Ufuk <svg aria-hidden="true"><use href="#i-diag"/></svg></span>
+    </a></li><li class="selection-card"><a href="https://www.ufukfelsefedergisi.com/blog/uofjv08tclvb2gknhumn2u6yw4p4nt" hreflang="tr">
+      <span class="selection-card__title" lang="tr">Dercartes’ın Metodik Şüphesine Yönelik Bir Eleştiri</span>
+      <span class="selection-card__credit">Yusuf Al-Salihi</span>
+      <span class="selection-card__read">Read on Ufuk <svg aria-hidden="true"><use href="#i-diag"/></svg></span>
+    </a></li></ol></section>
+      <section id="iletisim" class="home-contact layout"><div><h2>Contact</h2><a class="round-link" href="../en/contact.html"><span class="round-link__arrow"><svg aria-hidden="true"><use href="#i-right"/></svg></span><span>Contact form</span></a><nav class="related-links" aria-label="Contact channels">
+    <a href="mailto:support@philposium.com">support@philposium.com</a>
+    <a href="https://www.instagram.com/philposium/">Instagram</a>
+    <a href="https://x.com/philposium">X</a>
+  </nav><nav class="related-links" aria-label="Other links"><a href="../en/sitemap.html">Sitemap</a><a href="../en/2027-call-for-papers.html">2027 Call for Papers</a><a href="../en/archive.html">Archive</a></nav></div><section class="newsletter" id="eposta"><h2>Mailing list</h2><p>For calls for papers, programmes and new writing.</p><form class="phil-form" data-phil-form="newsletter" method="post">
+      
+      <label>Email address<input type="email" name="email" autocomplete="email" maxlength="254" required></label>
+      
+      <button class="confetti-button" type="submit" disabled>Subscribe</button>
+      <p class="form-status" data-form-status role="status" aria-live="polite"></p>
+    </form></section></section></main>
+  <footer class="closing">
+    <div class="site-footer layout"><a class="wordmark" href="../en/index.html" aria-label="Philposium · Home"><img src="../design/phil-logo-text.svg" width="415" height="93" alt="Philposium"></a><nav aria-label="Footer menu"><a href="../en/2027-call-for-papers.html">2027 Call for Papers</a><a href="../en/archive.html">Archive</a><a href="../en/contact.html">Contact</a><a href="../en/sitemap.html">Sitemap</a></nav>
+    <a class="circle-button" href="#top" aria-label="Back to top"><svg aria-hidden="true"><use href="#i-up"/></svg></a></div>
+    <div class="wormhole"><canvas aria-hidden="true"></canvas></div>
+  </footer>
+  <dialog class="lightbox" aria-labelledby="lightbox-title">
+    <div class="lightbox__art"><img alt=""></div>
+    <div class="lightbox__info"><div><h2 id="lightbox-title"></h2><p class="lightbox__caption"></p>
+    <a class="lightbox__source" hidden>Artwork record <svg aria-hidden="true"><use href="#i-diag"/></svg></a></div>
+    <div class="lightbox__steps">
+    <button class="circle-button" type="button" data-detail-step="-1" aria-label="Previous image"><svg aria-hidden="true"><use href="#i-left"/></svg></button>
+    <button class="circle-button" type="button" data-detail-step="1" aria-label="Next image"><svg aria-hidden="true"><use href="#i-right"/></svg></button></div></div>
+    <form method="dialog"><button class="circle-button lightbox__close" aria-label="Close image" autofocus><svg aria-hidden="true"><use href="#i-close"/></svg></button></form></dialog>
+</body>
+</html>
