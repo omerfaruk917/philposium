@@ -187,6 +187,14 @@ function render(page, lang) {
   <meta charset="utf-8">
   <script>
     (() => {
+      // Detect once per tab; subsequent navigation, including TR/EN, stays explicit.
+      try {
+        if (sessionStorage.getItem('philposium:language-initialized')) return;
+        sessionStorage.setItem('philposium:language-initialized', '1');
+      } catch {
+        // Keep language links usable when browser storage is unavailable.
+        return;
+      }
       const language = navigator.language.toLowerCase().startsWith('tr') ? 'tr' : 'en';
       if (language !== document.documentElement.lang) {
         location.replace(${JSON.stringify(prefix + routes[page][1-index])} + location.search + location.hash);
