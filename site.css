@@ -517,3 +517,9 @@ svg use { fill: none; stroke: currentColor; stroke-width: 1.65; stroke-linecap: 
   .call-layout { grid-template-columns: minmax(0, 1fr); gap: 34px; }
   .call-facts { max-width: 440px; }
 }
+
+.resource-tabs { display:flex; gap:1.5rem; border-bottom:1px solid currentColor; margin:2rem 0; }
+.resource-tabs button { background:none; color:inherit; border:0; padding:.8rem 0; cursor:pointer; opacity:.55; }
+.resource-tabs button[aria-selected="true"] { opacity:1; box-shadow:0 2px currentColor; }
+.resource-list { display:grid; gap:1.5rem; max-width:55rem; }
+[role="tabpanel"][hidden] { display:none; }

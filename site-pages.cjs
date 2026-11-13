@@ -5,6 +5,7 @@ global.window = {};
 require('./gallery-data.js');
 const { philGallery } = window;
 const { selections, ufuk, issue } = require('./blog-data.js');
+const { renderGuide } = require('./guide-content.cjs');
 const { renderCall } = require('./call-content.cjs');
 
 const routes = {
@@ -14,6 +15,8 @@ const routes = {
   call: ['2027-bildiri-cagrisi.html', 'en/2027-call-for-papers.html', '2027 Bildiri Çağrısı', '2027 Call for Papers'],
   gallery: ['galeri.html', 'en/gallery.html', 'Philposium Galerisi', 'Philposium Gallery'],
   blog: ['blog.html', 'en/blog.html', 'Seçmeler', 'Selections'],
+  resources: ['arsiv/kaynaklar.html', 'en/archive/resources.html', 'Kaynaklar', 'Resources'],
+  guide: ['arsiv/akademik-yazim-kilavuzu.html', 'en/archive/academic-writing-guide.html', 'Akademik Yazım Kılavuzu', 'Academic Writing Guide'],
   archive: ['arsiv.html', 'en/archive.html', 'Arşiv', 'Archive'],
   contact: ['iletisim.html', 'en/contact.html', 'İletişim', 'Contact'],
   map: ['site-haritasi.html', 'en/sitemap.html', 'Site Haritası', 'Sitemap'],
@@ -47,7 +50,7 @@ function render(page, lang) {
   const home = page === 'home';
   const withGallery = home || page === 'gallery';
   const withForms = home || page === 'contact' || page === 'call';
-  const active = page === 'team' ? 'about' : page === 'archive' ? 'blog' : page === 'map' ? 'contact' : page;
+  const active = page === 'team' ? 'about' : ['archive','resources','guide'].includes(page) ? 'blog' : page === 'map' ? 'contact' : page;
   const icon = name => `<svg aria-hidden="true"><use href="#i-${name}"/></svg>`;
   const link = name => `<a href="${url(name)}">${label(name)}</a>`;
   const roundLink = (href, title) => `<a class="round-link" href="${href}"><span class="round-link__arrow">${icon('right')}</span><span>${title}</span></a>`;
@@ -161,12 +164,30 @@ function render(page, lang) {
   } else if (page === 'archive') {
     content = `<div class="page layout">${heading(label(page))}<section class="prose">
       <h2>Ufuk Felsefe Dergisi</h2><nav class="related-links" aria-label="${T('Arşiv bağlantıları','Archive links')}">
-      ${link('blog')}<a href="${issue}" hreflang="tr">${T('Dergiyi oku','Read the issue')}</a></nav></section></div>`;
+      ${link('resources')}${link('blog')}<a href="${issue}" hreflang="tr">${T('Dergiyi oku','Read the issue')}</a></nav></section></div>`;
+  } else if (page === 'resources') {
+    const documents = [
+      [T('Akademik Metin Yazım Kılavuzu · Türkçe', 'Academic Writing Guide · Turkish'), '1ZqGwjig_aBDCAksW7xuo5gB6-z03pIcA'],
+      [T('Bildiri Çağrısı · Türkçe', 'Call for Papers · Turkish'), '1IaO0GxXxHcGal2M6a35NXMp6F26-s5rH'],
+      ['Call for Papers · English', '1EhnIIRQxZxuId6hH-bGrT70m6AEvqW-S'],
+    ];
+    content = `<div class="page layout"><nav class="breadcrumb">${link('archive')} / ${label(page)}</nav>${heading(label(page))}
+      <div class="resource-tabs" role="tablist" aria-label="${label(page)}">
+        <button id="documents-tab" role="tab" aria-selected="true" aria-controls="documents-panel" tabindex="0">${T('Belgeler','Documents')}</button>
+        <button id="media-tab" role="tab" aria-selected="false" aria-controls="media-panel" tabindex="-1">${T('Medya','Media')}</button>
+      </div>
+      <section id="documents-panel" role="tabpanel" aria-labelledby="documents-tab" tabindex="0">
+        <div class="resource-list">${documents.map(([title,id]) => roundLink('https://drive.google.com/file/d/'+id+'/view',title)).join('')}</div>
+        <nav class="related-links">${roundLink(url('guide'),T('Yazım kılavuzunu sitede oku','Read the writing guide online'))}</nav>
+      </section>
+      <section id="media-panel" role="tabpanel" aria-labelledby="media-tab" tabindex="0" hidden>${roundLink(url('gallery'),label('gallery'))}</section></div>`;
+  } else if (page === 'guide') {
+    content = `<article class="page layout"><nav class="breadcrumb">${link('archive')} / ${link('resources')}</nav>${heading(label(page))}<div class="prose">${renderGuide(lang)}</div></article>`;
   } else if (page === 'contact') {
     content = `<div class="page layout">${heading(label(page))}<div class="page-split"><section><h2>${T('Mesaj gönder','Send a message')}</h2>${form('contact')}${contactChannels}</section>${newsletter}</div>${contactLinks}</div>`;
   } else if (page === 'map') {
     content = `<div class="page layout">${heading(label(page))}<ul class="site-map">
-      ${['home','about','call','gallery','blog','archive','contact','map'].map(name => `<li>${link(name)}${name === 'about' ? `<ul><li>${link('team')}</li></ul>` : ''}</li>`).join('')}</ul></div>`;
+      ${['home','about','call','gallery','blog','archive','resources','guide','contact','map'].map(name => `<li>${link(name)}${name === 'about' ? `<ul><li>${link('team')}</li></ul>` : ''}</li>`).join('')}</ul></div>`;
   }
 
   const loader = `<div class="loader" hidden>

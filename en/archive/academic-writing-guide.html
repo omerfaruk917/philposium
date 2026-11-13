@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script>
+    (() => {
+      // An English URL is an explicit choice, even on the first visit.
+      if (document.documentElement.lang === 'en') {
+        try { sessionStorage.setItem('philposium:language-initialized', '1'); } catch {}
+        return;
+      }
+      // Detect only on the initial default-language entry.
+      try {
+        if (sessionStorage.getItem('philposium:language-initialized')) return;
+        sessionStorage.setItem('philposium:language-initialized', '1');
+      } catch {
+        // Keep language links usable when browser storage is unavailable.
+        return;
+      }
+      const language = navigator.language.toLowerCase().startsWith('tr') ? 'tr' : 'en';
+      if (language !== document.documentElement.lang) {
+        location.replace("../../arsiv/akademik-yazim-kilavuzu.html" + location.search + location.hash);
+      }
+    })();
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#efe9d3">
+  <meta name="description" content="Philposium is an undergraduate philosophy symposium run by philosophy students at Marmara University.">
+  <title>Academic Writing Guide · Philposium</title>
+  <link rel="icon" href="../../design/phil-logo-kiwi.svg" type="image/svg+xml">
+  <link rel="alternate" hreflang="tr" href="../../arsiv/akademik-yazim-kilavuzu.html">
+  <link rel="stylesheet" href="../../site.css">
+  
+  <script src="../../site.js" defer></script>
+  <script src="../../pointer-fluid.js" defer></script>
+</head>
+<body id="top" class="inner-page">
+  <canvas class="pointer-fluid" aria-hidden="true"></canvas>
+  <svg class="symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><symbol id="i-home" viewBox="0 0 24 24"><path d="m3.5 10 6.8-5.8a2.6 2.6 0 0 1 3.4 0l6.8 5.8M6 8.5v10A2.5 2.5 0 0 0 8.5 21h7a2.5 2.5 0 0 0 2.5-2.5v-10M10 21v-4a2 2 0 0 1 4 0v4"/></symbol><symbol id="i-about" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><ellipse cx="12" cy="12" rx="10.7" ry="4.2" transform="rotate(-34 12 12)"/></symbol><symbol id="i-gallery" viewBox="0 0 24 24"><rect x="5.5" y="3.5" width="13" height="17" rx="3" transform="rotate(12 12 12)"/><path d="M5 5.5H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2m4-3 3.5-3.5 4 4.5m-2.3-7.4h.01"/></symbol><symbol id="i-blog" viewBox="0 0 24 24"><path d="M5 4h10a3 3 0 0 1 3 3v13H7a3 3 0 0 1-3-3V5a1 1 0 0 1 1-1Zm-1 13a3 3 0 0 1 3-3h11M8 8h6m-6 3h4"/></symbol><symbol id="i-contact" viewBox="0 0 24 24"><rect x="3.5" y="5.5" width="17" height="13" rx="3"/><path d="m4.5 7 6 5a2.4 2.4 0 0 0 3 0l6-5"/></symbol><symbol id="i-right" viewBox="0 0 24 24"><path d="M4.5 12h14m-5.5-5.5 5.5 5.5-5.5 5.5"/></symbol><symbol id="i-diag" viewBox="0 0 24 24"><path d="M6 18 18 6M7.5 6H18v10.5"/></symbol><symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5m-6 6 6-6 6 6"/></symbol><symbol id="i-left" viewBox="0 0 24 24"><path d="M19.5 12h-14M11 6.5 5.5 12l5.5 5.5"/></symbol><symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol></svg>
+  <a href="#ana" class="skip">Skip to content</a>
+  <header class="masthead layout"><a class="wordmark" href="../../en/index.html" aria-label="Philposium · Home"><img src="../../design/phil-logo-text.svg" width="415" height="93" alt="Philposium"></a>
+    <nav class="masthead__nav" aria-label="Main menu"><a href="../../en/about.html">About Us</a><a href="../../en/gallery.html">Philposium Gallery</a><a href="../../en/blog.html">Selections</a><a href="../../en/contact.html">Contact</a></nav>
+    <div class="masthead__actions"><a class="call-link" href="../../en/2027-call-for-papers.html">2027 Call for Papers<svg aria-hidden="true"><use href="#i-diag"/></svg></a><a class="language-link" href="../../arsiv/akademik-yazim-kilavuzu.html" hreflang="tr" lang="tr" aria-label="Türkçe">TR</a></div>
+  </header>
+  <nav class="dock" aria-label="Sections" style="--active:3">
+    <div class="dock__drop" aria-hidden="true"></div>
+    <a href="../../en/index.html" aria-label="Home"><svg aria-hidden="true"><use href="#i-home"/></svg><span>Home</span></a><a href="../../en/about.html" aria-label="About Us"><svg aria-hidden="true"><use href="#i-about"/></svg><span>About Us</span></a><a href="../../en/gallery.html" aria-label="Philposium Gallery"><svg aria-hidden="true"><use href="#i-gallery"/></svg><span>Gallery</span></a><a href="../../en/blog.html" aria-label="Selections" aria-current="location"><svg aria-hidden="true"><use href="#i-blog"/></svg><span>Selections</span></a><a href="../../en/contact.html" aria-label="Contact"><svg aria-hidden="true"><use href="#i-contact"/></svg><span>Contact</span></a>
+  </nav>
+  <main id="ana" tabindex="-1"><article class="page layout"><nav class="breadcrumb"><a href="../../en/archive.html">Archive</a> / <a href="../../en/archive/resources.html">Resources</a></nav><header class="page-heading"><h1>Academic Writing Guide</h1></header><div class="prose"><p>Marmara University, Department of Philosophy · Philposium '27</p><section id="guide-1"><h2>What Is Academic Writing?</h2><p>Academic writing is evidence-based written work produced through scholarly methods, with the aim of generating knowledge, solving a problem or critically evaluating existing knowledge.</p><ul><li>Purpose: It is written to identify an issue or solve a problem.</li><li>Objectivity: Claims should be as free as possible from the author’s subjective judgements.</li><li>Coherence: The arguments, evidence and references should form a coherent whole.</li><li>Verifiability: The references supporting the author’s claims must be verifiable.</li><li>Originality: The text should offer an independent, critical assessment of the problem it addresses. It should go beyond reporting existing views and establish meaningful connections between them.</li></ul></section><section id="guide-2"><h2>Choosing a Topic and Defining a Research Problem</h2><ul><li>Accessible sources relevant to the chosen topic should be available.</li><li>Topics should be narrowed down. For example, choose a title such as “Traces of Philosophical Thought in Homer’s Texts” rather than “The Relationship between Myth and Philosophy in Ancient Greece”.</li><li>State the research question clearly in a single sentence.</li><li>Consider the topic’s contribution to the field: Why does it matter? What problem might it help resolve?</li><li>Check that the title matches the content. It should reflect the direction of the text and the problem it examines.</li></ul></section><section id="guide-3"><h2>Literature Search and References</h2><ul><li>Consult primary sources directly where the research topic and method require it, and critically evaluate the secondary literature.</li><li>Secondary sources may include scholarly articles and studies of a philosopher or one of their works.</li><li>Examples of primary sources: Aristotle, Metaphysics; Plato, Symposium.</li><li>Example of a secondary source: Hasan Hüseyin Kargın, Platon’un Mutluluk Anlayışı [Plato’s Conception of Happiness], 2024.</li><li>Sources can be found through platforms such as Google Scholar, PhilPapers, JSTOR and DergiPark.</li><li>Identify keywords and search for them in both Turkish and English.</li><li>Take notes on the texts you read, recording the author, year, main idea and page number.</li><li>Every quotation used in the text must acknowledge the person or source quoted.</li></ul></section><section id="guide-4"><h2>Sections of an Academic Text</h2><ul><li>Title: Choose a concise, clear title that reflects the content.</li><li>Abstract: State the purpose, method, findings and conclusion in 300–500 words. Include 3–5 keywords.</li><li>Introduction: Present the research problem, central thesis, significance of the study and overall direction of the argument.</li><li>Main body: Provide conceptual analysis, textual examination, development of arguments and an assessment of alternative interpretations and objections.</li><li>Conclusion: Set out the conclusions reached through the main arguments and the answer to the research question.</li><li>References: List all sources cited in the text.</li></ul></section><section id="guide-5"><h2>Language and Style</h2><ul><li>Use clear, accessible and measured language. First- or third-person narration may be appropriate depending on the discipline’s writing conventions and the nature of the text. Avoid unnecessary use of the passive voice.</li><li>Avoid exaggerated, emotive or categorical statements, such as “definitely” or “everyone knows that”.</li><li>Avoid colloquial language and slang.</li><li>Define abbreviations at their first occurrence.</li><li>Use terminology consistently; do not use different terms for the same concept.</li><li>Use transitions to connect paragraphs and sections, such as “nevertheless”, “therefore” and “for this reason”.</li></ul></section><section id="guide-6"><h2>Citations and Quotations</h2><ul><li>Always acknowledge the source of another person’s idea.</li><li>Use a single citation style throughout, such as APA, MLA, Chicago or IEEE. Check which style the institution or journal requires.</li><li>Place direct quotations in quotation marks and include the page number.</li><li>You may paraphrase in your own words, but you must still cite the source.</li><li>Every source cited in the text must appear in the reference list, and every entry in the reference list must be cited in the text.</li></ul></section><section id="guide-7"><h2>Ethics and Plagiarism</h2><ul><li>Plagiarism is the use of another person’s text or ideas without acknowledging the source.</li><li>Fabricating or falsifying data violates research ethics.</li><li>For research involving human participants, obtain the ethics committee approvals required by the nature of the research and applicable regulations, and follow the principles of informed consent.</li><li>Disclose the use of tools such as artificial intelligence in accordance with the institution’s rules.</li></ul></section><section id="guide-8"><h2>Revision and Final Checks</h2><ul><li>It can be helpful to set the draft aside for a while before rereading it.</li><li>Check the logical progression of the text: Are the question, method, findings and conclusion consistent with one another?</li><li>Correct any spelling, punctuation and formatting errors.</li><li>Check tables, figures and numbering.</li><li>Do the page layout, font and margins comply with the guidelines?</li><li>If possible, ask a peer or supervisor to read the text.</li></ul></section></div></article></main>
+  <footer class="closing">
+    <div class="site-footer layout"><a class="wordmark" href="../../en/index.html" aria-label="Philposium · Home"><img src="../../design/phil-logo-text.svg" width="415" height="93" alt="Philposium"></a><nav aria-label="Footer menu"><a href="../../en/2027-call-for-papers.html">2027 Call for Papers</a><a href="../../en/archive.html">Archive</a><a href="../../en/contact.html">Contact</a><a href="../../en/sitemap.html">Sitemap</a></nav>
+    <a class="circle-button" href="#top" aria-label="Back to top"><svg aria-hidden="true"><use href="#i-up"/></svg></a></div>
+    
+  </footer>
+  
+</body>
+</html>
