@@ -187,7 +187,12 @@ function render(page, lang) {
   <meta charset="utf-8">
   <script>
     (() => {
-      // Detect once per tab; subsequent navigation, including TR/EN, stays explicit.
+      // An English URL is an explicit choice, even on the first visit.
+      if (document.documentElement.lang === 'en') {
+        try { sessionStorage.setItem('philposium:language-initialized', '1'); } catch {}
+        return;
+      }
+      // Detect only on the initial default-language entry.
       try {
         if (sessionStorage.getItem('philposium:language-initialized')) return;
         sessionStorage.setItem('philposium:language-initialized', '1');
