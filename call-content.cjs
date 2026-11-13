@@ -1,4 +1,4 @@
-function renderCall(T, title, roundLink, newsletter) {
+function renderCall(T, title, roundLink, newsletter, resources = '') {
   const email = 'philposium@marmara.edu.tr';
   const marmara = T('Marmara Üniversitesi', 'Marmara University');
   const professor = 'Prof. Dr.';
@@ -52,6 +52,7 @@ function renderCall(T, title, roundLink, newsletter) {
           <div><dt>Philposium</dt><dd>${symposiumDates}</dd></div>
         </dl>
         <p class="call-venue">${T('Yüz yüze', 'In person')}<br>${T('Marmara Üniversitesi Göztepe Kampüsü, Fen-Edebiyat Fakültesi Konferans Salonu', 'Faculty of Arts and Sciences Conference Hall, Marmara University, Göztepe Campus')}</p>
+        ${roundLink('#kaynaklar', T('Kaynaklar', 'Resources'))}
         ${roundLink('#basvuru', T('Başvuru bilgileri', 'How to submit'))}
       </aside>
       <div class="prose call-body">
@@ -95,6 +96,10 @@ function renderCall(T, title, roundLink, newsletter) {
         </section>
       </div>
     </div>
+    <section id="kaynaklar" aria-labelledby="call-resources-title" style="scroll-margin-top: 6rem; margin-top: 4rem">
+      <h2 id="call-resources-title">${T('Kaynaklar', 'Resources')}</h2>
+      ${resources}
+    </section>
   </article>
   <div class="layout call-newsletter">${newsletter}</div>`;
 }

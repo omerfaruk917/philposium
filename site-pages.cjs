@@ -121,6 +121,23 @@ function render(page, lang) {
   }
   const selectionList = items => `<ol class="selection-list" role="list">${items.map(selectionCard).join('')}</ol>`;
 
+  function renderResources() {
+    const documents = [
+      [T('Akademik Metin Yazım Kılavuzu · Türkçe', 'Academic Writing Guide · Turkish'), '1ZqGwjig_aBDCAksW7xuo5gB6-z03pIcA'],
+      [T('Bildiri Çağrısı · Türkçe', 'Call for Papers · Turkish'), '1IaO0GxXxHcGal2M6a35NXMp6F26-s5rH'],
+      ['Call for Papers · English', '1EhnIIRQxZxuId6hH-bGrT70m6AEvqW-S'],
+    ];
+    return `
+      <div class="resource-tabs" role="tablist" aria-label="${label('resources')}">
+        <button id="documents-tab" role="tab" aria-selected="true" aria-controls="documents-panel" tabindex="0">${T('Belgeler','Documents')}</button>
+        <button id="media-tab" role="tab" aria-selected="false" aria-controls="media-panel" tabindex="-1">${T('Medya','Media')}</button>
+      </div>
+      <section id="documents-panel" role="tabpanel" aria-labelledby="documents-tab" tabindex="0">
+        <div class="resource-list">${documents.map(([title,id]) => roundLink('https://drive.google.com/file/d/'+id+'/view',title)).join('')}</div>
+        <nav class="related-links">${roundLink(url('guide'),T('Yazım kılavuzunu sitede oku','Read the writing guide online'))}</nav>
+      </section>
+      <section id="media-panel" role="tabpanel" aria-labelledby="media-tab" tabindex="0" hidden>${roundLink(url('gallery'),label('gallery'))}</section>`;
+  }
   let content;
   if (home) {
     content = `<section class="opening" aria-label="Philposium"><div class="opening__pin"><div class="opening__track">
@@ -154,7 +171,7 @@ function render(page, lang) {
     content = `<div class="page layout"><nav class="breadcrumb" aria-label="${T('Sayfa yolu','Breadcrumb')}">${link('about')} / ${label(page)}</nav>${heading(label(page),intro)}
       <div class="prose"><p>${T('Öğrenci ekibi, sempozyumun programını, bildiri sürecini ve etkinlik iletişimini yürütür.', 'The student team coordinates the programme, the paper submission process and event communications.')}</p>${roundLink(url('contact'),T('Ekibe ulaşın','Contact the team'))}</div></div>`;
   } else if (page === 'call') {
-    content = renderCall(T, label(page), roundLink, newsletter);
+    content = renderCall(T, label(page), roundLink, newsletter, renderResources());
   } else if (page === 'gallery') {
     content = `<div class="page layout">${heading(label(page))}${gallery}</div>`;
   } else if (page === 'blog') {
@@ -166,21 +183,7 @@ function render(page, lang) {
       <h2>Ufuk Felsefe Dergisi</h2><nav class="related-links" aria-label="${T('Arşiv bağlantıları','Archive links')}">
       ${link('resources')}${link('blog')}<a href="${issue}" hreflang="tr">${T('Dergiyi oku','Read the issue')}</a></nav></section></div>`;
   } else if (page === 'resources') {
-    const documents = [
-      [T('Akademik Metin Yazım Kılavuzu · Türkçe', 'Academic Writing Guide · Turkish'), '1ZqGwjig_aBDCAksW7xuo5gB6-z03pIcA'],
-      [T('Bildiri Çağrısı · Türkçe', 'Call for Papers · Turkish'), '1IaO0GxXxHcGal2M6a35NXMp6F26-s5rH'],
-      ['Call for Papers · English', '1EhnIIRQxZxuId6hH-bGrT70m6AEvqW-S'],
-    ];
-    content = `<div class="page layout"><nav class="breadcrumb">${link('archive')} / ${label(page)}</nav>${heading(label(page))}
-      <div class="resource-tabs" role="tablist" aria-label="${label(page)}">
-        <button id="documents-tab" role="tab" aria-selected="true" aria-controls="documents-panel" tabindex="0">${T('Belgeler','Documents')}</button>
-        <button id="media-tab" role="tab" aria-selected="false" aria-controls="media-panel" tabindex="-1">${T('Medya','Media')}</button>
-      </div>
-      <section id="documents-panel" role="tabpanel" aria-labelledby="documents-tab" tabindex="0">
-        <div class="resource-list">${documents.map(([title,id]) => roundLink('https://drive.google.com/file/d/'+id+'/view',title)).join('')}</div>
-        <nav class="related-links">${roundLink(url('guide'),T('Yazım kılavuzunu sitede oku','Read the writing guide online'))}</nav>
-      </section>
-      <section id="media-panel" role="tabpanel" aria-labelledby="media-tab" tabindex="0" hidden>${roundLink(url('gallery'),label('gallery'))}</section></div>`;
+    content = `<div class="page layout"><nav class="breadcrumb">${link('archive')} / ${label(page)}</nav>${heading(label(page))}${renderResources()}</div>`;
   } else if (page === 'guide') {
     content = `<article class="page layout"><nav class="breadcrumb">${link('archive')} / ${link('resources')}</nav>${heading(label(page))}<div class="prose">${renderGuide(lang)}</div></article>`;
   } else if (page === 'contact') {
