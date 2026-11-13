@@ -22,6 +22,22 @@ const routes = {
   map: ['site-haritasi.html', 'en/sitemap.html', 'Site Haritası', 'Sitemap'],
 };
 
+const origin = 'https://philposium.com';
+const canonicalUrl = filename => origin + '/' + filename.replace(/index\.html$/, '').replace(/\.html$/, '');
+const descriptions = {
+  home: ['Marmara Üniversitesi Felsefe öğrencilerinin yürüttüğü Philposium lisans felsefe sempozyumu. Bildiri çağrısı, başvuru takvimi ve akademik kaynaklar.', 'Philposium is an undergraduate philosophy symposium run by philosophy students at Marmara University. Explore the call for papers, dates and academic resources.'],
+  about: ['Philposium’u tanıyın: Marmara Üniversitesi Felsefe öğrencilerinin yürüttüğü lisans felsefe sempozyumunun amacı ve çalışma alanı.', 'Meet Philposium, an undergraduate philosophy symposium run by philosophy students at Marmara University, and learn about its purpose.'],
+  team: ['Philposium öğrenci ekibi: program, bildiri süreci ve etkinlik iletişimi için ekip bilgileri ve iletişim bağlantısı.', 'Meet the Philposium student team coordinating the programme, paper submissions and event communications.'],
+  call: ['Philposium 2027 bildiri çağrısı. Son başvuru 25 Ocak 2027; sempozyum 20–21 Nisan 2027. Başvuru koşulları, değerlendirme ve kaynaklar.', 'Philposium 2027 call for papers. Submit by 25 January 2027 for the symposium on 20–21 April 2027. Eligibility, review criteria and resources.'],
+  gallery: ['Philposium Galerisi: The Met açık erişim koleksiyonundan sanat eserlerini ve eser bilgilerini keşfedin.', 'Explore artworks and collection records from The Met’s Open Access collection in the Philposium Gallery.'],
+  blog: ['Ufuk Felsefe Dergisi’nden seçilmiş felsefe yazıları, çeviriler ve söyleşiler. Yazar bilgileri ve özgün metinlere bağlantılar.', 'Selected philosophy essays, translations and interviews from Ufuk Felsefe Dergisi, with author credits and links to the original Turkish texts.'],
+  resources: ['Philposium kaynakları: Türkçe ve İngilizce bildiri çağrıları, akademik yazım kılavuzu ve galeri bağlantıları.', 'Philposium resources: Turkish and English calls for papers, the academic writing guide and gallery links.'],
+  guide: ['Akademik yazım kılavuzu: konu ve problem seçimi, argüman, kaynak kullanımı, atıf, etik ve akademik metin kontrol listesi.', 'Academic writing guide covering research questions, arguments, sources, citation, ethics and a checklist for scholarly texts.'],
+  archive: ['Philposium arşivi: akademik kaynaklar, bildiri çağrıları ve Ufuk Felsefe Dergisi’nden seçmeler.', 'The Philposium archive: academic resources, calls for papers and selections from Ufuk Felsefe Dergisi.'],
+  contact: ['Philposium ile iletişime geçin. Sorularınızı iletişim formundan veya support@philposium.com adresinden iletin.', 'Contact Philposium using the contact form or support@philposium.com for questions about the symposium.'],
+  map: ['Philposium site haritası: bildiri çağrısı, ekip, galeri, seçmeler, arşiv, kaynaklar ve iletişim sayfaları.', 'Find Philposium pages: call for papers, team, gallery, selections, archive, resources and contact.'],
+};
+
 const symbols = {
   home: '<path d="m3.5 10 6.8-5.8a2.6 2.6 0 0 1 3.4 0l6.8 5.8M6 8.5v10A2.5 2.5 0 0 0 8.5 21h7a2.5 2.5 0 0 0 2.5-2.5v-10M10 21v-4a2 2 0 0 1 4 0v4"/>',
   about: '<circle cx="12" cy="12" r="7"/><ellipse cx="12" cy="12" rx="10.7" ry="4.2" transform="rotate(-34 12 12)"/>',
@@ -43,6 +59,8 @@ function render(page, lang) {
   const index = en ? 1 : 0;
   const T = (tr, english) => en ? english : tr;
   const filename = routes[page][index];
+  const canonical = canonicalUrl(filename);
+  const description = descriptions[page][index];
   const prefix = '../'.repeat(filename.split('/').length - 1);
   const url = name => prefix + routes[name][index];
   const asset = name => prefix + name;
@@ -232,7 +250,7 @@ function render(page, lang) {
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#efe9d3">
-  <meta name="description" content="${escape(page === 'blog' ? selectionIntro : intro)}">
+  <meta name="description" content="${escape(description)}">
   <title>${home ? `Philposium · ${T('Felsefe Sempozyumu','Philosophy Symposium')}` : `${label(page)} · Philposium`}</title>
   <link rel="icon" href="${asset('assets/brand/favicon.svg')}" type="image/svg+xml">
   <link rel="apple-touch-icon" sizes="180x180" href="${asset('assets/brand/icon-180.png')}">
@@ -240,15 +258,35 @@ function render(page, lang) {
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Philposium">
   <meta property="og:title" content="${escape(home ? 'Philposium' : label(page))}">
-  <meta property="og:description" content="${escape(intro)}">
-  <meta property="og:url" content="https://philposium.com/${filename}">
+  <meta property="og:description" content="${escape(description)}">
+  <meta property="og:url" content="${canonical}">
   <meta property="og:image" content="https://philposium.com/assets/brand/share-cover.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="${T('Philposium logosu ve ana sayfa görseli', 'Philposium logo and homepage artwork')}">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://philposium.com/assets/brand/share-cover.jpg">
-  <link rel="alternate" hreflang="${T('en','tr')}" href="${prefix + routes[page][1-index]}">
+  <link rel="canonical" href="${canonical}">
+  <link rel="alternate" hreflang="tr" href="${canonicalUrl(routes[page][0])}">
+  <link rel="alternate" hreflang="en" href="${canonicalUrl(routes[page][1])}">
+  <link rel="alternate" hreflang="x-default" href="${canonicalUrl(routes[page][1])}">
+  <meta name="author" content="Ömer Faruk GÜLSARI">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta property="og:locale" content="${T('tr_TR', 'en_GB')}">
+  <meta property="og:locale:alternate" content="${T('en_GB', 'tr_TR')}">
+  <meta name="twitter:title" content="${escape(home ? 'Philposium' : routes[page][index + 2])}">
+  <meta name="twitter:description" content="${escape(description)}">
+  <meta name="twitter:image:alt" content="${T('Philposium logosu ve ana sayfa görseli', 'Philposium logo and homepage artwork')}">
+  <script type="application/ld+json">${JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [
+      { '@type': 'WebSite', '@id': origin + '/#website', url: origin + '/', name: 'Philposium', inLanguage: ['tr', 'en'] },
+      { '@type': page === 'contact' ? 'ContactPage' : page === 'about' ? 'AboutPage' : 'WebPage',
+        '@id': canonical + '#webpage', url: canonical, name: home ? 'Philposium' : routes[page][index + 2],
+        description, inLanguage: lang, isPartOf: { '@id': origin + '/#website' },
+        primaryImageOfPage: { '@type': 'ImageObject', url: origin + '/assets/brand/share-cover.jpg', width: 1200, height: 630 } }
+    ]
+  }).replace(/</g, '\u003c')}</script>
   <link rel="stylesheet" href="${asset('site.css')}">
   ${withForms ? `<link rel="stylesheet" href="${asset('forms.css')}">` : ''}
   ${scripts.map(src => `<script src="${asset(src)}" defer></script>`).join('\n  ')}
@@ -309,5 +347,22 @@ for (const folder of ['blog', 'en/blog']) {
       fs.mkdirSync(path.join(root, folder), { recursive: true });
       fs.writeFileSync(path.join(root, folder, `${slug}.html`), html);
     }
+  }
+}
+
+// Generate crawler support alongside the same pages; no guessed last-modified dates.
+const sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n' +
+  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n' +
+  Object.values(routes).flatMap(route => route.slice(0, 2).map(filename =>
+    '  <url><loc>' + canonicalUrl(filename) + '</loc>' +
+    ['tr', 'en'].map((lang, index) => '<xhtml:link rel="alternate" hreflang="' + lang + '" href="' + canonicalUrl(route[index]) + '"/>').join('') +
+    '<xhtml:link rel="alternate" hreflang="x-default" href="' + canonicalUrl(route[1]) + '"/></url>'
+  )).join('\n') + '\n</urlset>\n';
+const robots = 'User-agent: *\nAllow: /\nDisallow: /api/\nSitemap: https://philposium.com/sitemap.xml\n';
+for (const root of ['.', 'dist']) {
+  fs.writeFileSync(path.join(root, 'sitemap.xml'), sitemap);
+  fs.writeFileSync(path.join(root, 'robots.txt'), robots);
+  for (const file of ['llms.txt', 'credits.txt']) {
+    if (root !== '.') fs.copyFileSync(file, path.join(root, file));
   }
 }

@@ -1,0 +1,21 @@
+# Philposium
+
+> Philposium is an undergraduate philosophy symposium run by philosophy students at Marmara University, Türkiye. This website provides the call for papers, academic resources and contact information in Turkish and English.
+
+## Official pages
+- [English home](https://philposium.com/en/): Overview.
+- [Türkçe ana sayfa](https://philposium.com/): Türkçe genel bilgi.
+- [Call for papers 2027](https://philposium.com/en/2027-call-for-papers): Submission conditions and dates.
+- [2027 bildiri çağrısı](https://philposium.com/2027-bildiri-cagrisi): Türkçe çağrı.
+- [Resources](https://philposium.com/en/archive/resources): Document links and writing guide.
+- [Academic writing guide](https://philposium.com/en/archive/academic-writing-guide): English translation of the supplied Turkish guide.
+- [Contact](https://philposium.com/en/contact): Symposium contact information.
+- [Sitemap](https://philposium.com/sitemap.xml): All canonical pages and language alternatives.
+
+## Website attribution
+- [Website credits](https://philposium.com/credits.txt): Website designed and developed by Ömer Faruk GÜLSARI. His self-described area of focus is philosophical engineering. This is a website credit, not authorship of academic papers or journal articles.
+
+## Source boundaries
+Selections link to original texts on Ufuk Felsefe Dergisi. Consult those original sources for full text and authorship.
+The gallery uses The Met Open Access collection; individual collection links identify the works.
+Dates and submission requirements should be checked against the current call for papers.
