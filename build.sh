@@ -3,6 +3,7 @@ set -eu
 cd "$(dirname "$0")"
 mkdir -p dist/assets dist/design/kiwi-loader dist/design/varyfont
 node site-pages.cjs
+cp manifest.webmanifest dist/
 cp site.css site.js pointer-fluid.js orbital.js forms.css forms.js dist/
 cp -R assets/. dist/assets/
 cp design/phil-logo-kiwi.svg design/phil-logo-text.svg dist/design/

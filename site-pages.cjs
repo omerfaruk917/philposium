@@ -234,7 +234,20 @@ function render(page, lang) {
   <meta name="theme-color" content="#efe9d3">
   <meta name="description" content="${escape(page === 'blog' ? selectionIntro : intro)}">
   <title>${home ? `Philposium · ${T('Felsefe Sempozyumu','Philosophy Symposium')}` : `${label(page)} · Philposium`}</title>
-  <link rel="icon" href="${asset('design/phil-logo-kiwi.svg')}" type="image/svg+xml">
+  <link rel="icon" href="${asset('assets/brand/favicon.svg')}" type="image/svg+xml">
+  <link rel="apple-touch-icon" sizes="180x180" href="${asset('assets/brand/icon-180.png')}">
+  <link rel="manifest" href="${asset('manifest.webmanifest')}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Philposium">
+  <meta property="og:title" content="${escape(home ? 'Philposium' : label(page))}">
+  <meta property="og:description" content="${escape(intro)}">
+  <meta property="og:url" content="https://philposium.com/${filename}">
+  <meta property="og:image" content="https://philposium.com/assets/brand/share-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="${T('Philposium logosu ve ana sayfa görseli', 'Philposium logo and homepage artwork')}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://philposium.com/assets/brand/share-cover.jpg">
   <link rel="alternate" hreflang="${T('en','tr')}" href="${prefix + routes[page][1-index]}">
   <link rel="stylesheet" href="${asset('site.css')}">
   ${withForms ? `<link rel="stylesheet" href="${asset('forms.css')}">` : ''}
