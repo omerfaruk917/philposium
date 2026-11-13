@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <script>
+    (() => {
+      const language = navigator.language.toLowerCase().startsWith('tr') ? 'tr' : 'en';
+      if (language !== document.documentElement.lang) {
+        location.replace("../blog.html" + location.search + location.hash);
+      }
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#efe9d3">
   <meta name="description" content="Articles in Turkish from Ufuk Felsefe Dergisi.">

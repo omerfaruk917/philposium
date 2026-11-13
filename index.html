@@ -2,6 +2,14 @@
 <html lang="tr">
 <head>
   <meta charset="utf-8">
+  <script>
+    (() => {
+      const language = navigator.language.toLowerCase().startsWith('tr') ? 'tr' : 'en';
+      if (language !== document.documentElement.lang) {
+        location.replace("en/index.html" + location.search + location.hash);
+      }
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#efe9d3">
   <meta name="description" content="Philposium, Marmara Üniversitesi Felsefe öğrencilerinin yürüttüğü bir lisans felsefe sempozyumu.">
@@ -100,6 +108,7 @@
     <a href="https://www.instagram.com/philposium/">Instagram</a>
     <a href="https://x.com/philposium">X</a>
   </nav><nav class="related-links" aria-label="Diğer bağlantılar"><a href="site-haritasi.html">Site Haritası</a><a href="2027-bildiri-cagrisi.html">2027 Bildiri Çağrısı</a><a href="arsiv.html">Arşiv</a></nav></div><section class="newsletter" id="eposta"><h2>E-posta listesi</h2><p>Bildiri çağrıları, program ve yeni yazılar için.</p><form class="phil-form" data-phil-form="newsletter" method="post">
+      
       
       <label>E-posta adresiniz<input type="email" name="email" autocomplete="email" maxlength="254" required></label>
       

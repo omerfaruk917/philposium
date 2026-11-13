@@ -2,6 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <script>
+    (() => {
+      const language = navigator.language.toLowerCase().startsWith('tr') ? 'tr' : 'en';
+      if (language !== document.documentElement.lang) {
+        location.replace("../2027-bildiri-cagrisi.html" + location.search + location.hash);
+      }
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#efe9d3">
   <meta name="description" content="Philposium is an undergraduate philosophy symposium run by philosophy students at Marmara University.">
@@ -85,6 +93,7 @@
     </div>
   </article>
   <div class="layout call-newsletter"><section class="newsletter" id="eposta"><h2>Mailing list</h2><p>For calls for papers, programmes and new writing.</p><form class="phil-form" data-phil-form="newsletter" method="post">
+      
       
       <label>Email address<input type="email" name="email" autocomplete="email" maxlength="254" required></label>
       

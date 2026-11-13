@@ -185,6 +185,14 @@ function render(page, lang) {
 <html lang="${lang}">
 <head>
   <meta charset="utf-8">
+  <script>
+    (() => {
+      const language = navigator.language.toLowerCase().startsWith('tr') ? 'tr' : 'en';
+      if (language !== document.documentElement.lang) {
+        location.replace(${JSON.stringify(prefix + routes[page][1-index])} + location.search + location.hash);
+      }
+    })();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#efe9d3">
   <meta name="description" content="${escape(page === 'blog' ? selectionIntro : intro)}">
