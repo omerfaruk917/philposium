@@ -40,7 +40,7 @@ function renderCall(T, title, roundLink, newsletter) {
 
   return `<article class="page layout call-page">
     <header class="page-heading call-heading">
-      <p class="call-edition">Philposium 27\'</p>
+      <p class="call-edition">Philposium \'27</p>
       <h1>${title}</h1>
       <p>${T('Marmara Üniversitesi Lisans Felsefe Sempozyumu', 'Marmara University Undergraduate Philosophy Symposium')}</p>
     </header>
@@ -55,7 +55,7 @@ function renderCall(T, title, roundLink, newsletter) {
         ${roundLink('#basvuru', T('Başvuru bilgileri', 'How to submit'))}
       </aside>
       <div class="prose call-body">
-        <p>${T('Marmara Üniversitesi Felsefe Bölümü, Philposium 27\' için lisans öğrencilerini araştırmalarını sunmaya ve tartışmaya davet ediyor. Sempozyum, felsefenin tüm alanlarına açık ve belirli bir temayla sınırlı değil. Açık bir felsefi soru, argüman veya analitik çözümleme ortaya koyan disiplinlerarası çalışmalar da değerlendirmeye alınır.', 'The Department of Philosophy at Marmara University invites undergraduate students to present and discuss their research at Philposium 27\'. The symposium welcomes work in all areas of philosophy, with no set theme. Interdisciplinary work is welcome when it poses a clear philosophical question, advances a philosophical argument or offers critical analysis.')}</p>
+        <p>${T('Marmara Üniversitesi Felsefe Bölümü, Philposium \'27 için lisans öğrencilerini araştırmalarını sunmaya ve tartışmaya davet ediyor. Sempozyum, felsefenin tüm alanlarına açık ve belirli bir temayla sınırlı değil. Açık bir felsefi soru, argüman veya analitik çözümleme ortaya koyan disiplinlerarası çalışmalar da değerlendirmeye alınır.', 'The Department of Philosophy at Marmara University invites undergraduate students to present and discuss their research at Philposium \'27. The symposium welcomes work in all areas of philosophy, with no set theme. Interdisciplinary work is welcome when it poses a clear philosophical question, advances a philosophical argument or offers critical analysis.')}</p>
         <section>
           <h2>${T('Kimler başvurabilir?', 'Who can apply?')}</h2>
           <p>${T('Türkiye’den ve yurt dışından tüm lisans öğrencileri başvurabilir. Sempozyum dilleri Türkçe ve İngilizcedir.', 'Undergraduate students in Türkiye and abroad are eligible to apply. The symposium will be held in Turkish and English.')}</p>
