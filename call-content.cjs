@@ -32,7 +32,7 @@ function renderCall(T, title, roundLink, newsletter) {
     `<li>${rank} ${name}${role ? ` <strong class="committee-role">${role}</strong>` : ''}${affiliation ? `<small>${affiliation}</small>` : ''}</li>`
   ).join('')}</ul>`;
   const dates = [
-    [T('Çağrının ilanı', 'Call announcement'), '2026-11-09', T('9 Kasım 2026', '9 November 2026')],
+    [T('Çağrının ilanı', 'Call announcement'), '2026-11-13', T('13 Kasım 2026', '13 November 2026')],
     [T('Son başvuru', 'Submission deadline'), '2027-01-25', T('25 Ocak 2027', '25 January 2027')],
     [T('Kabul bildirimi', 'Notification of acceptance'), '2027-02-15', T('15 Şubat 2027', '15 February 2027')],
   ];
