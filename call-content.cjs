@@ -49,7 +49,7 @@ function renderCall(T, title, roundLink, newsletter) {
         <h2 id="call-calendar">${T('Takvim', 'Key dates')}</h2>
         <dl class="call-dates">
           ${dates.map(([label, date, display]) => `<div><dt>${label}</dt><dd><time datetime="${date}">${display}</time></dd></div>`).join('')}
-          <div><dt>${T('Sempozyum', 'Symposium')}</dt><dd>${symposiumDates}</dd></div>
+          <div><dt>Philposium</dt><dd>${symposiumDates}</dd></div>
         </dl>
         <p class="call-venue">${T('Yüz yüze', 'In person')}<br>${T('Marmara Üniversitesi Göztepe Kampüsü, Fen-Edebiyat Fakültesi Konferans Salonu', 'Faculty of Arts and Sciences Conference Hall, Marmara University, Göztepe Campus')}</p>
         ${roundLink('#basvuru', T('Başvuru bilgileri', 'How to submit'))}
