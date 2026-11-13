@@ -378,15 +378,23 @@
         Math.round(resolution * Math.min(3, Math.max(1, aspect))),
         Math.round(resolution * Math.min(3, Math.max(1, 1 / aspect))),
       ];
-      for (const buffer of targets.splice(0)) {
-        gl.deleteTexture(buffer.texture);
-        gl.deleteFramebuffer(buffer.framebuffer);
-      }
+      const oldTargets = targets.splice(0);
+      const oldVelocity = velocity?.read;
+      const oldDye = dye?.read;
       velocity = pair(dimensions(80), true);
       dye = pair(dimensions(256), true);
       divergence = target(...dimensions(80));
       pressure = pair(dimensions(80), false);
       bloom = [64, 32, 16, 8, 4].map(resolution => target(...dimensions(resolution), true));
+      // Mobile browser chrome changes the viewport during scrolling.
+      // Resample the current flow before releasing its textures.
+      gl.disable(gl.BLEND);
+      if (oldVelocity) pass('fade', velocity.read, { value: 1 }, { uTexture: oldVelocity });
+      if (oldDye) pass('fade', dye.read, { value: 1 }, { uTexture: oldDye });
+      for (const buffer of oldTargets) {
+        gl.deleteTexture(buffer.texture);
+        gl.deleteFramebuffer(buffer.framebuffer);
+      }
     }
 
     function pass(name, output, values, inputs) {
@@ -547,8 +555,21 @@
     }
 
     const limit = value => Math.max(-340, Math.min(340, value));
-    samples.push({ x, y, dx: limit(dx * force), dy: limit(dy * force), color: color.map(channel => channel * .27) });
-    if (samples.length > 12) samples.shift();
+    // Bridge sparse touch events without increasing the total injected force.
+    const steps = String(id).startsWith('touch-')
+      ? Math.min(8, Math.max(1, Math.ceil(Math.hypot(dx, dy) / 18)))
+      : 1;
+    for (let step = 1; step <= steps; step++) {
+      const remaining = 1 - step / steps;
+      samples.push({
+        x: x - dx * remaining / bounds.width,
+        y: y - dy * remaining / bounds.height,
+        dx: limit(dx * force) / steps,
+        dy: limit(dy * force) / steps,
+        color: color.map(channel => channel * .27 / steps),
+      });
+    }
+    if (samples.length > 32) samples.splice(0, samples.length - 32);
     activeUntil = time + 2700;
     if (!scheduled) scheduled = requestAnimationFrame(tick);
   }
