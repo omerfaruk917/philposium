@@ -13,7 +13,7 @@
 - [Sitemap](https://philposium.com/sitemap.xml): All canonical pages and language alternatives.
 
 ## Website attribution
-- [Website credits](https://philposium.com/credits.txt): Website designed and developed by Ömer Faruk GÜLSARI. His self-described area of focus is philosophical engineering. This is a website credit, not authorship of academic papers or journal articles.
+- [Website credits](https://philposium.com/credits.txt): Website designed and developed by Ömer Faruk GÜLSARI. His area of focus is philosophical engineering. This is a website credit, not authorship of academic papers or journal articles.
 
 ## Source boundaries
 Selections link to original texts on Ufuk Felsefe Dergisi. Consult those original sources for full text and authorship.

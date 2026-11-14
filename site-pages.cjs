@@ -28,7 +28,7 @@ const descriptions = {
   home: ['Marmara Üniversitesi Felsefe öğrencilerinin yürüttüğü Philposium lisans felsefe sempozyumu. Bildiri çağrısı, başvuru takvimi ve akademik kaynaklar.', 'Philposium is an undergraduate philosophy symposium run by philosophy students at Marmara University. Explore the call for papers, dates and academic resources.'],
   about: ['Philposium’u tanıyın: Marmara Üniversitesi Felsefe öğrencilerinin yürüttüğü lisans felsefe sempozyumunun amacı ve çalışma alanı.', 'Meet Philposium, an undergraduate philosophy symposium run by philosophy students at Marmara University, and learn about its purpose.'],
   team: ['Philposium öğrenci ekibi: program, bildiri süreci ve etkinlik iletişimi için ekip bilgileri ve iletişim bağlantısı.', 'Meet the Philposium student team coordinating the programme, paper submissions and event communications.'],
-  call: ['Philposium 2027 bildiri çağrısı. Son başvuru 25 Ocak 2027; sempozyum 20–21 Nisan 2027. Başvuru koşulları, değerlendirme ve kaynaklar.', 'Philposium 2027 call for papers. Submit by 25 January 2027 for the symposium on 20–21 April 2027. Eligibility, review criteria and resources.'],
+  call: ['Philposium 2027 lisans felsefe sempozyumu: 20–21 Nisan, Marmara Üniversitesi Göztepe Kampüsü, İstanbul. Bildiri özeti için son başvuru: 25 Ocak 2027.', 'Philposium 2027 undergraduate philosophy symposium, 20–21 April at Marmara University, Göztepe Campus, Istanbul. Abstract deadline: 25 January 2027.'],
   gallery: ['Philposium Galerisi: The Met açık erişim koleksiyonundan sanat eserlerini ve eser bilgilerini keşfedin.', 'Explore artworks and collection records from The Met’s Open Access collection in the Philposium Gallery.'],
   blog: ['Ufuk Felsefe Dergisi’nden seçilmiş felsefe yazıları, çeviriler ve söyleşiler. Yazar bilgileri ve özgün metinlere bağlantılar.', 'Selected philosophy essays, translations and interviews from Ufuk Felsefe Dergisi, with author credits and links to the original Turkish texts.'],
   resources: ['Philposium kaynakları: Türkçe ve İngilizce bildiri çağrıları, akademik yazım kılavuzu ve galeri bağlantıları.', 'Philposium resources: Turkish and English calls for papers, the academic writing guide and gallery links.'],
@@ -66,6 +66,11 @@ function render(page, lang) {
   const asset = name => prefix + name;
   const label = name => escape(routes[name][index + 2]);
   const home = page === 'home';
+  const pageTitle = home
+    ? T('Philposium | Felsefe Sempozyumu 2027', 'Philposium | Philosophy Symposium 2027')
+    : page === 'call'
+      ? T('2027 Felsefe Sempozyumu Bildiri Çağrısı | Philposium', '2027 Philosophy Symposium Call for Papers | Philposium')
+      : routes[page][index + 2] + ' | Philposium';
   const withGallery = home || page === 'gallery';
   const withForms = home || page === 'contact' || page === 'call';
   const active = page === 'team' ? 'about' : ['archive','resources','guide'].includes(page) ? 'blog' : page === 'map' ? 'contact' : page;
@@ -251,13 +256,13 @@ function render(page, lang) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#efe9d3">
   <meta name="description" content="${escape(description)}">
-  <title>${home ? `Philposium · ${T('Felsefe Sempozyumu','Philosophy Symposium')}` : `${label(page)} · Philposium`}</title>
+  <title>${escape(pageTitle)}</title>
   <link rel="icon" href="${asset('assets/brand/favicon.svg')}" type="image/svg+xml">
   <link rel="apple-touch-icon" sizes="180x180" href="${asset('assets/brand/icon-180.png')}">
   <link rel="manifest" href="${asset('manifest.webmanifest')}">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Philposium">
-  <meta property="og:title" content="${escape(home ? 'Philposium' : label(page))}">
+  <meta property="og:title" content="${escape(pageTitle)}">
   <meta property="og:description" content="${escape(description)}">
   <meta property="og:url" content="${canonical}">
   <meta property="og:image" content="https://philposium.com/assets/brand/share-cover.jpg">
@@ -270,11 +275,11 @@ function render(page, lang) {
   <link rel="alternate" hreflang="tr" href="${canonicalUrl(routes[page][0])}">
   <link rel="alternate" hreflang="en" href="${canonicalUrl(routes[page][1])}">
   <link rel="alternate" hreflang="x-default" href="${canonicalUrl(routes[page][1])}">
-  <meta name="author" content="Ömer Faruk GÜLSARI">
+  <meta name="designer" content="Ömer Faruk GÜLSARI">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta property="og:locale" content="${T('tr_TR', 'en_GB')}">
   <meta property="og:locale:alternate" content="${T('en_GB', 'tr_TR')}">
-  <meta name="twitter:title" content="${escape(home ? 'Philposium' : routes[page][index + 2])}">
+  <meta name="twitter:title" content="${escape(pageTitle)}">
   <meta name="twitter:description" content="${escape(description)}">
   <meta name="twitter:image:alt" content="${T('Philposium logosu ve ana sayfa görseli', 'Philposium logo and homepage artwork')}">
   <script type="application/ld+json">${JSON.stringify({
@@ -282,11 +287,37 @@ function render(page, lang) {
     '@graph': [
       { '@type': 'WebSite', '@id': origin + '/#website', url: origin + '/', name: 'Philposium', inLanguage: ['tr', 'en'] },
       { '@type': page === 'contact' ? 'ContactPage' : page === 'about' ? 'AboutPage' : 'WebPage',
-        '@id': canonical + '#webpage', url: canonical, name: home ? 'Philposium' : routes[page][index + 2],
-        description, inLanguage: lang, isPartOf: { '@id': origin + '/#website' },
-        primaryImageOfPage: { '@type': 'ImageObject', url: origin + '/assets/brand/share-cover.jpg', width: 1200, height: 630 } }
+        '@id': canonical + '#webpage', url: canonical, name: pageTitle,
+        description, inLanguage: lang, ...(page === 'call' ? { mainEntity: { '@id': origin + '/#philposium-2027' } } : {}), isPartOf: { '@id': origin + '/#website' },
+        primaryImageOfPage: { '@type': 'ImageObject', url: origin + '/assets/brand/share-cover.jpg', width: 1200, height: 630 } },
+      ...(page === 'call' ? [{
+        '@type': 'EducationEvent', '@id': origin + '/#philposium-2027',
+        name: T("Philposium '27 — Lisans Felsefe Sempozyumu", "Philposium '27 — Undergraduate Philosophy Symposium"),
+        url: canonical,
+        description: T('Türkiye’den ve yurt dışından lisans öğrencilerinin araştırmalarını sunduğu, felsefenin tüm alanlarına açık, Türkçe ve İngilizce lisans felsefe sempozyumu.', 'An undergraduate philosophy symposium welcoming research in all areas of philosophy from students in Türkiye and abroad, held in Turkish and English.'),
+        startDate: '2027-04-20', endDate: '2027-04-21',
+        eventStatus: 'https://schema.org/EventScheduled',
+        eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+        inLanguage: ['tr', 'en'],
+        image: [origin + '/assets/brand/share-cover.jpg'],
+        about: { '@type': 'Thing', name: T('Felsefe', 'Philosophy') },
+        organizer: {
+          '@type': 'Organization', '@id': origin + '/#organising-team',
+          name: T('Philposium Öğrenci Düzenleme Ekibi', 'Philposium Student Organising Team'),
+          url: canonicalUrl(routes.team[index])
+        },
+        location: {
+          '@type': 'Place', '@id': origin + '/#venue',
+          name: T('Marmara Üniversitesi Göztepe Kampüsü, Fen-Edebiyat Fakültesi Konferans Salonu', 'Faculty of Arts and Sciences Conference Hall, Marmara University, Göztepe Campus'),
+          address: { '@type': 'PostalAddress', addressLocality: 'İstanbul', addressCountry: 'TR' },
+          containedInPlace: {
+            '@type': 'Place', name: T('Marmara Üniversitesi Göztepe Kampüsü', 'Marmara University, Göztepe Campus'),
+            url: 'https://www.marmara.edu.tr/kampuste-yasam/ulasim/ulasim/goztepe-yerleskesi-iett'
+          }
+        }
+      }] : [])
     ]
-  }).replace(/</g, '\u003c')}</script>
+  }).replace(/</g, '\\u003c')}</script>
   <link rel="stylesheet" href="${asset('site.css')}">
   ${withForms ? `<link rel="stylesheet" href="${asset('forms.css')}">` : ''}
   ${scripts.map(src => `<script src="${asset(src)}" defer></script>`).join('\n  ')}
@@ -324,7 +355,7 @@ const callRedirect = `<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="refresh" content="0; url=${callTarget}">
-  <link rel="canonical" href="${callTarget}">
+  <link rel="canonical" href="${canonicalUrl(routes.call[0])}">
   <title>Bildiri Çağrısı · Philposium</title>
 </head>
 <body><a href="${callTarget}">Bildiri çağrısına git</a></body>
@@ -341,7 +372,7 @@ for (const folder of ['blog', 'en/blog']) {
   for (const slug of ['duran-saat', 'kusur-ve-sonuc', 'bir-imge-neye-taniklik-eder']) {
     const title = folder === 'blog' ? 'Seçmeler' : 'Selections';
     const lang = folder === 'blog' ? 'tr' : 'en';
-    const html = `<!doctype html><html lang="${lang}"><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=../blog.html"><title>${title} · Philposium</title><a href="../blog.html">${title}</a></html>
+    const html = `<!doctype html><html lang="${lang}"><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=../blog.html"><link rel="canonical" href="${canonicalUrl(routes.blog[lang === 'en' ? 1 : 0])}"><title>${title} · Philposium</title><a href="../blog.html">${title}</a></html>
 `;
     for (const root of ['.', 'dist']) {
       fs.mkdirSync(path.join(root, folder), { recursive: true });

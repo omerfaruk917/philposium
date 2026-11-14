@@ -269,7 +269,8 @@ function setupWormhole() {
       cancelAnimationFrame(frame);
       frame = 0;
     }
-    if (reducedMotion.matches) lastTime = 0;
+    // Resume from the last visible frame rather than simulating time spent hidden.
+    if (!play) lastTime = 0;
   }
 
   new ResizeObserver(() => {
